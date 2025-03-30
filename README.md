@@ -4,4 +4,4 @@ It is a web-based application for creating, assigning and tracking tasks. Users 
 Our Team:
 1. Kim Timur Aleksandrovich
 2. Sagidolla Beibars Zhasulanuly
-3. 
+3. Chiryasov Kirill Vitalievich
