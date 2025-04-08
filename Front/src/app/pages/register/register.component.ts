@@ -3,23 +3,24 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../data.service';
-import { FormsModule } from '@angular/forms'; // импортируем для ngModel
+import { FormsModule } from '@angular/forms'; 
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  imports: [CommonModule, FormsModule] // импортируем необходимые модули
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
+  imports: [CommonModule, FormsModule]
 })
-export class LoginComponent {
+export class RegisterComponent {
   password: string = '';
   email:string='';
 
   constructor(private router: Router,private dataService: DataService,
     private location: Location,
-  ) 
-  {
+  ) {
+  }
+  ngOnInit(): void {
+    this.email=this.dataService.getEmail();
   }
 
   onSubmit():void {

@@ -20,11 +20,16 @@ export class HomeComponent {
     });
   }
 
-  onLogin() {
+  onLogin() { // Сохраняем почту в сервис
+    this.router.navigate(['/login']);  // Переходим на страницу login
+    }
+
+  onReg(){
     const email = this.loginForm.value.email;
     if (email) {
       this.dataService.setEmail(email);  // Сохраняем почту в сервис
-      this.router.navigate(['/login']);  // Переходим на страницу login
-    }}
+      this.router.navigate(['/register']);  // Переходим на страницу login
+    }
+  }
     
 }

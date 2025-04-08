@@ -1,12 +1,13 @@
 <h1>Добро пожаловать</h1>
+<button (click)="onLogin()">Войти</button>
 
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+<form [formGroup]="loginForm" (ngSubmit)="onReg()">
   <input formControlName="email" type="email" placeholder="Введите email" />
-  <button type="submit" [disabled]="loginForm.invalid">Войти</button>
+  <button type="submit" [disabled]="loginForm.invalid">Зарегестрироваться</button>
 </form>
 
 <div class="buttons">
-  <button>О на</button>
+  <button>О наc</button>
   <button>Контакты</button>
   <button>Посмотреть альбомы</button>
 </div>
