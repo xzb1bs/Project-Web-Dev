@@ -38,6 +38,9 @@
     <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
       Login
     </button>
+    <button (click)="goBack($event)" class="btn btn-secondary">
+      Back
+    </button>
   </form>
 
   <!-- Вывод почты после ввода -->
