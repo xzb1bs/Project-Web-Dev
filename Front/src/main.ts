@@ -12,4 +12,5 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     importProvidersFrom(ReactiveFormsModule)
   ]
-});
+})
+;
