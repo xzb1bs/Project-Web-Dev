@@ -38,7 +38,7 @@ export class RegisterComponent {
     }).subscribe({ // Подобие добавления нового пользователя
       next: () => {
         alert('Registration successful!');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/boards']);
       },
       error: (err) => {
         alert(err.error.error || 'Registration failed');

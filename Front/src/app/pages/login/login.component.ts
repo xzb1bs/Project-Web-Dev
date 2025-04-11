@@ -1,10 +1,10 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
-import { DataService } from '../../services/data.service';
 import { FormsModule } from '@angular/forms'; // импортируем для ngModel
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service'; // импортируем AuthService
 
 @Component({
   selector: 'app-login',
@@ -13,31 +13,33 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.css'],
   imports: [CommonModule, FormsModule] // импортируем необходимые модули
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  email: string = '';
   password: string = '';
-  email:string='';
 
   constructor(
     private router: Router,
-    private dataService: DataService,
     private location: Location,
     private http: HttpClient,
-  ) 
-  {
+    private authService: AuthService, // инжектим сервис авторизации
+  ) {}
+
+  ngOnInit(): void {
+    // Можно, например, проверять, если пользователь уже залогинен, перенаправлять его на доски
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/boards']);
+    }
   }
 
-  onSubmit():void {
+  onSubmit(): void {
     if (!this.email || !this.password) {
       alert('Please fill in both fields');
       return;
     }
-  
-    this.http.post('http://localhost:8000/api/login/', {
-      email: this.email,
-      password: this.password
-    }).subscribe({  //Подобие проверки почты и пароля через джанго
-      next: () => {
-        this.router.navigate(['/dashboard']);
+
+    this.authService.login(this.email, this.password).subscribe({
+      next: (userId) => {
+        this.router.navigate(['/boards']);
       },
       error: () => {
         alert('Invalid email or password');
@@ -45,13 +47,13 @@ export class LoginComponent {
     });
   }
 
-  goReg(event:Event):void{
-    event.preventDefault(); 
-    this.router.navigate(['/register'])
+  goReg(event: Event): void {
+    event.preventDefault();
+    this.router.navigate(['/register']);
   }
 
-  goBack(event:Event):void {
-    event.preventDefault(); 
-    this.router.navigate(['/'])
-  } 
+  goBack(event: Event): void {
+    event.preventDefault();
+    this.router.navigate(['/']);
+  }
 }
