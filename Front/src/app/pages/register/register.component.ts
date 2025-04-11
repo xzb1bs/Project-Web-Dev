@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { FormsModule } from '@angular/forms'; 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +16,10 @@ export class RegisterComponent {
   password: string = '';
   email:string='';
 
-  constructor(private router: Router,private dataService: DataService,
+  constructor(private router: Router,
+    private dataService: DataService,
     private location: Location,
+    private http: HttpClient,
   ) {
   }
   ngOnInit(): void {
@@ -24,17 +27,27 @@ export class RegisterComponent {
   }
 
   onSubmit():void {
-    if (this.email && this.password) {
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
-      this.router.navigate(['/boards']);
-    } else {
-      alert('Please fill in both fields');  
+    if (!this.email || !this.password) {
+      alert('Please fill in both fields');
+      return;
     }
+
+    this.http.post('http://localhost:8000/api/register/', {
+      email: this.email,
+      password: this.password
+    }).subscribe({ // Подобие добавления нового пользователя
+      next: () => {
+        alert('Registration successful!');
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        alert(err.error.error || 'Registration failed');
+      }
+    });
   }
 
   goBack(event:Event):void {
     event.preventDefault(); 
-    this.location.back();
+    this.router.navigate(['/'])
   } 
 }
