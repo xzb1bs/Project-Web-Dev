@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './boards.component.css'
 })
 export class BoardsComponent {
-
+  
 }

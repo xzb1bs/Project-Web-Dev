@@ -2,7 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
-import { DataService } from '../../data.service';
+import { DataService } from '../../services/data.service';
 import { FormsModule } from '@angular/forms'; // импортируем для ngModel
 
 @Component({
