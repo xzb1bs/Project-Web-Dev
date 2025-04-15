@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 export interface Board {
   id: number;
@@ -14,6 +15,13 @@ export class BoardService {
     { id: 2, title: 'Kanban Flow', userId: '123' },
     { id: 3, title: 'Marketing Plan', userId: '456' }
   ];
+  constructor(private http:HttpClient){}
+  // board.service.ts
+  createBoard(board: { title: string; userId: string; color: string }): Observable<any> {
+    return this.http.post('http://localhost:8000/api/boards/', board);
+  }
+
+  
 
   getBoardsByUser(userId: string): Observable<Board[]> {
     const boards = this.mockBoards.filter(board => board.userId === userId);

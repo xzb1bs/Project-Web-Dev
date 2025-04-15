@@ -1,0 +1,48 @@
+header{
+    background-color: #4b4b4b;
+    width: auto;
+    height: 10%;
+    border: 1px slategrey solid;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.main{
+    display: flex;
+    width: auto;
+    height: 90%;
+}
+.menu{
+    border: 1px slategrey solid;
+    width: 300px;
+    background-color:#4b4b4b;
+}
+.vb{
+    
+    border: 1px slategrey solid;
+    width: 100%;
+    background-color: #4b4b4b;
+}
+.boards{
+    display: flex;
+}
+.boards-container {
+    padding: 16px;
+  }
+  
+  .board-card {
+    background-color: #d4528b;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.2s ease;
+  }
+  
+  .board-card:hover {
+    background-color: #b83a6a;
+  }
+  

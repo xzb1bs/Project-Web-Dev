@@ -1,1 +1,19 @@
-<button *ngIf="isUserLoggedIn$ | async" (click)="logout()">Выйти</button>
+
+<header>
+    <button *ngIf="isUserLoggedIn$ | async" (click)="logout()">Выйти</button>
+</header>
+<div class="main">
+    <div class="menu"></div>
+    <div class="vb">
+        <p>Доски</p>
+        <div class="boards">
+            <button (click)="showModal = true">Создать доску</button>
+            <app-create-board
+            *ngIf="showModal"
+            (create)="handleCreateBoard($event)"
+            (close)="showModal = false">
+            </app-create-board>
+        </div>
+    </div>
+</div>
+

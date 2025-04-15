@@ -1,0 +1,25 @@
+<div class="modal">
+    <div class="modal-content">
+      <h2>Создать доску</h2>
+  
+      <label>Цвет фона:</label>
+      <div class="color-options">
+        <div
+          *ngFor="let color of colors"
+          class="color-box"
+          [style.background]="color"
+          [class.selected]="color === selectedColor"
+          (click)="selectedColor = color"
+        ></div>
+      </div>
+  
+      <label>Название доски:</label>
+      <input type="text" [(ngModel)]="title" placeholder="Введите название доски" />
+  
+      <div class="buttons">
+        <button (click)="submit()">Создать</button>
+        <button (click)="closeModal()">Отмена</button>
+      </div>
+    </div>
+  </div>
+  

@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { BoardsComponent } from './pages/boards/boards.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { authGuard } from './services/auth.guard';
+import { BoardComponent } from './pages/board/board.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {
     path: 'boards',
     loadComponent: () => import('./pages/boards/boards.component').then(m => m.BoardsComponent),
-    canActivate: [authGuard]
+    // canActivate: [authGuard]
   },
+  { path: 'boards/:id', component: BoardComponent } 
 ];
