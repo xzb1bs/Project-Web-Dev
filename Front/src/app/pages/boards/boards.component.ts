@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CreateBoardComponent } from '../create-board/create-board.component';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-boards',
@@ -16,6 +17,7 @@ import { CreateBoardComponent } from '../create-board/create-board.component';
 export class BoardsComponent implements OnInit {
   userId: string | null = null;
   boards: any[] = [];
+  tasks: any[] = [];
   isUserLoggedIn$: Observable<boolean>; // Используем Observable для подписки
 
   constructor(
@@ -23,6 +25,7 @@ export class BoardsComponent implements OnInit {
     private boardService: BoardService,
     private authService: AuthService,
     private router: Router,
+    private taskService: TaskService
   ) {
     this.isUserLoggedIn$ = this.authService.isLoggedIn$; // Присваиваем observable
   }
@@ -36,6 +39,11 @@ export class BoardsComponent implements OnInit {
       });
     }
     this.loadBoards();
+
+    this.taskService.getTasks().subscribe((data: any) => {
+      this.tasks = data;
+      console.log(this.tasks);
+    });
   }
 
   openBoard(boardId: string): void {

@@ -18,7 +18,7 @@ export class BoardService {
   constructor(private http:HttpClient){}
   // board.service.ts
   createBoard(board: { title: string; userId: string; color: string }): Observable<any> {
-    return this.http.post('http://localhost:8000/api/boards/', board);
+    return this.http.post('http://localhost:8000/task-list/', board);
   }
 
   
