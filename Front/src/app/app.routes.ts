@@ -20,9 +20,9 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent)
   },
   {
-    path: 'boards',
+    path: 'boards/:userId',
     loadComponent: () => import('./pages/boards/boards.component').then(m => m.BoardsComponent),
-    // canActivate: [authGuard]
+  
   },
-  { path: 'boards/:id', component: BoardComponent } 
+  { path: 'boards/:userId/:id', component: BoardComponent } 
 ];

@@ -32,17 +32,17 @@ body{
   }
   
   .board-card {
-    background-color: #d4528b;
-    padding: 16px;
-    margin-bottom: 12px;
-    border-radius: 8px;
+    background-color: #2c2c2c;
     color: white;
+    padding: 10px;
+    margin: 10px 0;
     cursor: pointer;
-    font-size: 18px;
-    transition: 0.2s ease;
+    border-radius: 5px;
+    transition: background 0.3s;
   }
   
   .board-card:hover {
-    background-color: #b83a6a;
+    background-color: #3d3d3d;
   }
+  
   

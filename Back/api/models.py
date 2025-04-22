@@ -20,10 +20,6 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     objects = UserManager()
 
-    
-# class User(AbstractUser):
-#     pass
-
 class Project(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)

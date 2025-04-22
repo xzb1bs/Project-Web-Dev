@@ -32,14 +32,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (!this.email || !this.password) {
-      alert('Please fill in both fields');
-      return;
-    }
-
     this.authService.login(this.email, this.password).subscribe({
       next: (userId) => {
-        this.router.navigate(['/boards']);
+        this.router.navigate(['/boards', userId]);
       },
       error: () => {
         alert('Invalid email or password');

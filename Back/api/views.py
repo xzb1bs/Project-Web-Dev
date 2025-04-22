@@ -3,10 +3,17 @@ from rest_framework.response import Response
 from rest_framework import status, generics, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
-from .models import Task
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate
+
+
+from .models import Task, User
+from .serializers import UserSerializer  # нужно создать
+
 from .serializers import TaskSerializer, TaskTitleSerializer, UserLoginSerializer
 from django.http import JsonResponse
-from .models import Task
 
 def task_list(request):
     tasks = Task.objects.all() 
@@ -20,6 +27,50 @@ def task_list(request):
     serializer = TaskSerializer(tasks, many=True)   
     return Response(serializer.data)
 
+@api_view(['POST'])
+def register_view(request):
+    username = request.data.get('username')
+    email = request.data.get('email')
+    password = request.data.get('password')
+
+    if not username or not email or not password:
+        return Response({'error': 'All fields are required.'}, status=400)
+
+    if User.objects.filter(username=username).exists():
+        return Response({'error': 'Username already taken.'}, status=400)
+
+    user = User.objects.create_user(username=username, email=email, password=password)
+    return Response({'message': 'User created successfully.'}, status=201)
+
+@api_view(['GET'])  # Только для админов, можно убрать для тестов
+def user_list(request):
+    User = get_user_model()
+    users = User.objects.all().values('id', 'username', 'email','password')
+    return Response(list(users))
+
+@api_view(['POST'])
+def login_view(request):
+    print("Request data:", request.data)  # ⬅️ Временный вывод
+    email = request.data.get('email')
+    password = request.data.get('password')
+
+    if not email or not password:
+        return Response({'error': 'Email and password required'}, status=400)
+    
+    user = authenticate(request, username=email, password=password)
+    
+    if user is not None:
+        refresh = RefreshToken.for_user(user)
+        access_token = str(refresh.access_token)
+        refresh_token = str(refresh)
+        return Response({
+            'access': access_token,
+            'refresh': refresh_token,
+            'user_id': user.id
+        })
+    else:
+        return Response({'error': 'Invalid credentials'}, status=400)
+    
 @api_view(['POST'])
 def create_task(request):
     serializer = TaskSerializer(data=request.data)
@@ -62,27 +113,3 @@ class TaskCreateView(generics.CreateAPIView):
 def logout_view(request):
     request.user.auth_token.delete()
     return Response({'success': 'Logged out'}, status=204)
-
-@api_view(['POST', 'GET'])
-def login_view(request):
-    print("Request data:", request.data)
-
-    serializer = UserLoginSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-
-    username = serializer.validated_data['username']
-    password = serializer.validated_data['password']
-
-    print("Username:", username)
-    print("Password:", password)
-
-    user = authenticate(username=username, password=password)
-    print("Authenticated user:", user)
-
-    if user:
-        refresh = RefreshToken.for_user(user)
-        return Response({
-            'refresh': str(refresh),
-            'access': str(refresh.access_token),
-        })
-    return Response({'error': 'Invalid credentials'}, status=400)

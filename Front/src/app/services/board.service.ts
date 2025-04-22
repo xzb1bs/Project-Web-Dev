@@ -18,13 +18,15 @@ export class BoardService {
   constructor(private http:HttpClient){}
   // board.service.ts
   createBoard(board: { title: string; userId: string; color: string }): Observable<any> {
-    return this.http.post('http://localhost:8000/task-list/', board);
+    const newBoard = { id: Date.now(), title: board.title, userId: board.userId };
+    this.mockBoards.push(newBoard);
+    return of(newBoard); // имитация успешного ответа
   }
 
   
 
   getBoardsByUser(userId: string): Observable<Board[]> {
     const boards = this.mockBoards.filter(board => board.userId === userId);
-    return of(boards); // возвращаем как Observable
+    return of(boards);
   }
 }

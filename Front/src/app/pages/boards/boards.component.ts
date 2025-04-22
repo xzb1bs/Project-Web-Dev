@@ -25,7 +25,7 @@ export class BoardsComponent implements OnInit {
     private boardService: BoardService,
     private authService: AuthService,
     private router: Router,
-    private taskService: TaskService
+    private taskService: TaskService,
   ) {
     this.isUserLoggedIn$ = this.authService.isLoggedIn$; // Присваиваем observable
   }
@@ -33,11 +33,7 @@ export class BoardsComponent implements OnInit {
   ngOnInit(): void {
     // Получаем userId из маршрута, если оно есть
     this.userId = this.route.snapshot.paramMap.get('userId');
-    if (this.userId) {
-      this.boardService.getBoardsByUser(this.userId).subscribe((data) => {
-        this.boards = data;
-      });
-    }
+ 
     this.loadBoards();
 
     this.taskService.getTasks().subscribe((data: any) => {
@@ -66,25 +62,30 @@ export class BoardsComponent implements OnInit {
   showModal = false;
 
   loadBoards(): void {
-    if (this.userId) {
-      this.boardService.getBoardsByUser(this.userId).subscribe((data) => {
+    const id = this.route.snapshot.paramMap.get('userId')?.trim();
+    if (id) {
+      this.userId = id;
+      this.boardService.getBoardsByUser(id).subscribe((data) => {
         this.boards = data;
       });
+    } else {
+      console.warn('User ID не найден в маршруте');
     }
   }
   
   handleCreateBoard(data: { title: string, color: string }) {
     this.boardService.createBoard({ title: data.title, color: data.color, userId: this.userId! })
-      .subscribe({ // Подобие добавления нового пользователя
+      .subscribe({
         next: () => {
           this.showModal = false;
-          this.loadBoards();
+          this.loadBoards(); // <--- обязательно
         },
         error: (err) => {
           alert(err.error.error || 'Ошибка создания доски');
-          this.showModal = false;
         }
       });
-    
   }
+  
+    
 }
+

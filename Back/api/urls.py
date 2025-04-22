@@ -3,6 +3,9 @@ from . import views
 from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
+    
+    path('register/', views.register_view, name='register'),
+    path('users/', views.user_list, name='user-list'),
     #JWT
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),

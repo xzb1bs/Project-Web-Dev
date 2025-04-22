@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
 import { FormsModule } from '@angular/forms'; 
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -15,11 +16,18 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterComponent {
   password: string = '';
   email:string='';
+  form = {
+    username: '',
+    email: '',
+    password: ''
+  };
+  
 
   constructor(private router: Router,
     private dataService: DataService,
     private location: Location,
     private http: HttpClient,
+    private authService: AuthService
   ) {
   }
   ngOnInit(): void {
@@ -45,6 +53,19 @@ export class RegisterComponent {
       }
     });
   }
+  register(): void {
+    this.authService.register(this.form.email, this.form.email, this.form.password)
+      .subscribe({
+        next: () => {
+          alert('Регистрация прошла успешно!');
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          alert(err.error?.error || 'Ошибка регистрации');
+        }
+      });
+  }
+  
 
   goBack(event:Event):void {
     event.preventDefault(); 
