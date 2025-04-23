@@ -1,3 +1,9 @@
+<div class="top-bar">
+  <div class="left-column">
+    <img src="assets/images/note-icon.png" alt="NoteCore Logo" class="logo">
+  </div>
+  
+
 <div class="login-container">
     <h2>Register</h2>
     <form  #loginForm="ngForm">
@@ -5,18 +11,14 @@
         <form (ngSubmit)="register()">
           <input type="email" placeholder="Email" [(ngModel)]="form.email" name="email" required>
           <input type="password" placeholder="Password" [(ngModel)]="form.password" name="password" required>
-          <button type="submit">Зарегистрироваться</button>
+          <button type="submit">Register</button>
           <button (click)="goBack($event)" class="btn btn-secondary">Back</button>
         </form>
       </div>
   
       
   
-<<<<<<< HEAD
       <button (click)="onLogin($event)" type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
-=======
-      <!-- <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
->>>>>>> d9c36b95d6c1dc2752906740b6a348bb33e575a6
         Login
       </button>
       <button (click)="goBack($event)" class="btn btn-secondary">
@@ -24,5 +26,5 @@
       </button>
     </form>
 
-  </div> -->
+  </div> 
   

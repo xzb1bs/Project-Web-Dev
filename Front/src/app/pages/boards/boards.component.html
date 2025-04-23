@@ -1,5 +1,5 @@
-
 <header>
+<<<<<<< HEAD
     <button *ngIf="isUserLoggedIn$ | async" (click)="logout()">Выйти</button>
 </header>
 <div class="main">
@@ -18,6 +18,37 @@
             </div>
         </div>
         
+=======
+    <div class="header-container">
+      <h1>Мои доски</h1>
+      <button *ngIf="isUserLoggedIn$ | async" (click)="logout()" class="create-button">Выйти</button>
+>>>>>>> 3af338024147400bcc7d31a1491d0d2f34f8a8a3
     </div>
-</div>
-
+  <div class="main">
+    <aside class="menu">
+      <!-- Здесь можешь добавить пункты меню -->
+    </aside>
+  
+    <section class="vb">
+      <div class="boards-header">
+        <h2>Доски</h2>
+        <button class="create-button" (click)="showModal = true">+ Создать доску</button>
+      </div>
+  
+      <app-create-board
+        *ngIf="showModal"
+        (create)="handleCreateBoard($event)"
+        (close)="showModal = false">
+      </app-create-board>
+  
+      <div class="boards">
+        <div
+          *ngFor="let board of boards"
+          class="board-card"
+          (click)="openBoard(board.title)">
+          <h3>{{ board.title }}</h3>
+        </div>
+      </div>
+    </section>
+  </div>
+  

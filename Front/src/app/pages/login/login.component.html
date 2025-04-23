@@ -1,3 +1,9 @@
+<div class="top-bar">
+  <div class="left-column">
+    <img src="assets/images/note-icon.png" alt="NoteCore Logo" class="logo">
+  </div>
+  
+</div>
 <div class="login-container">
   <h2>Login</h2>
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
@@ -41,7 +47,15 @@
     <button (click)="goBack($event)" class="btn btn-secondary">
       Back
     </button>
-    <button type="submit" (click)="goReg($event)">Зарегестрироваться</button>
+    <button type="submit" (click)="goReg($event)">Register</button>
   </form>
-
 </div>
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <div class="about">
+      <p>Copyright ©2025, NoteCore. All rights reserved.</p>
+      
+    </div>
+    
+  </div>
+</footer>
