@@ -26,11 +26,9 @@ export class HomeComponent {
     }
 
   onReg(){
-    const email = this.loginForm.value.email;
-    if (email) {
-      this.dataService.setEmail(email);  // Сохраняем почту в сервис
+      // Сохраняем почту в сервис
       this.router.navigate(['/register']);  // Переходим на страницу login
-    }
+    
   }
     
 }

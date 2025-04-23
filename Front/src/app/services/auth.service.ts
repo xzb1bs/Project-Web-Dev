@@ -15,11 +15,6 @@ interface JWTPayload {
 export class AuthService {
   private loggedIn = false;
   private userId:string ='';
-  private mockUser = {
-    email: 'test@example.com',
-    password: '123456',
-    id: '123'
-  };
 
   private apiUrl = 'http://127.0.0.1:8000/api';
   
@@ -90,6 +85,6 @@ export class AuthService {
     email,
     password,
   });
-}
+  }
 
 }

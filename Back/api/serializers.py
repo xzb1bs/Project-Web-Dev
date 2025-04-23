@@ -23,3 +23,9 @@ class ProjectSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
+
+class UserRegisterSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    email =serializers.CharField()
+    password = serializers.CharField()
+

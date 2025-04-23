@@ -6,13 +6,15 @@ from django.contrib.auth import authenticate
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
+from rest_framework.permissions import AllowAny
+
 from django.contrib.auth import authenticate
 
 
 from .models import Task, User
 from .serializers import UserSerializer  # нужно создать
 
-from .serializers import TaskSerializer, TaskTitleSerializer, UserLoginSerializer
+from .serializers import TaskSerializer, TaskTitleSerializer, UserLoginSerializer,UserRegisterSerializer
 from django.http import JsonResponse
 
 def task_list(request):
@@ -28,11 +30,14 @@ def task_list(request):
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([AllowAny])  # 👈 Вот так правильно
 def register_view(request):
+    print("lox")
+    print("Request data:", request.data) 
     username = request.data.get('username')
     email = request.data.get('email')
     password = request.data.get('password')
-
+    
     if not username or not email or not password:
         return Response({'error': 'All fields are required.'}, status=400)
 
