@@ -74,7 +74,7 @@ export class BoardsComponent implements OnInit {
   }
   
   handleCreateBoard(data: { title: string, color: string }) {
-    this.boardService.createBoard({ title: data.title, color: data.color, userId: this.userId! })
+    this.boardService.createBoard({ title: data.title, color: data.color })
       .subscribe({
         next: () => {
           this.showModal = false;

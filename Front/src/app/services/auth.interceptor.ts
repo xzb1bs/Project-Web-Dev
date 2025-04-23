@@ -14,8 +14,13 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
+    console.log('Token from localStorage:', token);
 
-    if (token) {
+    // Пути, на которые НЕ нужно добавлять Authorization
+    const excludedUrls = ['/api/register/', '/api/login/'];
+    const isExcluded = excludedUrls.some(url => req.url.includes(url));
+
+    if (token && !isExcluded) {
       const cloned = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`

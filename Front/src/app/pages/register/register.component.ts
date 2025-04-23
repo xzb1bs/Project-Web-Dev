@@ -65,7 +65,11 @@ export class RegisterComponent {
         }
       });
   }
-  
+
+  onLogin(event:Event) { // Сохраняем почту в сервис
+    event.preventDefault(); 
+    this.router.navigate(['/login']);  // Переходим на страницу login
+    }
 
   goBack(event:Event):void {
     event.preventDefault(); 

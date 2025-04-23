@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Task, Project, TaskStatus, User
+from .models import Board
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,6 +20,12 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
+
+class BoardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Board
+        fields = ['title', 'color']
+
 
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField()

@@ -36,6 +36,15 @@ class TaskStatus(models.Model):
 class TaskManager(models.Manager):
     def active(self):
         return self.filter(status__name="In process")
+    
+class Board(models.Model):
+    title = models.CharField(max_length=255)
+    color = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='boards')
+
+    def __str__(self):
+        return self.title
+
 
 class Task(models.Model):
     title = models.CharField(max_length=255)

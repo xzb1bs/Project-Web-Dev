@@ -1,32 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 export interface Board {
   id: number;
   title: string;
   userId: string;
+  color?: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class BoardService {
-  private mockBoards: Board[] = [
-    { id: 1, title: 'Project Phoenix', userId: '123' },
-    { id: 2, title: 'Kanban Flow', userId: '123' },
-    { id: 3, title: 'Marketing Plan', userId: '456' }
-  ];
-  constructor(private http:HttpClient){}
-  // board.service.ts
-  createBoard(board: { title: string; userId: string; color: string }): Observable<any> {
-    const newBoard = { id: Date.now(), title: board.title, userId: board.userId };
-    this.mockBoards.push(newBoard);
-    return of(newBoard); // имитация успешного ответа
+  private apiUrl = 'http://127.0.0.1:8000/api/boards/'; // ссылка на DRF ViewSet
+
+  constructor(private http: HttpClient) {}
+
+  // Создание доски
+  createBoard(boardData: { title: string; color: string }): Observable<any> {
+    return this.http.post(this.apiUrl, {
+      title: boardData.title,
+      color: boardData.color
+      // userId НЕ передаём - бэкенд возьмёт его из токена
+    });
   }
 
-  
-
+  // Получение досок пользователя
   getBoardsByUser(userId: string): Observable<Board[]> {
-    const boards = this.mockBoards.filter(board => board.userId === userId);
-    return of(boards);
+    const params = new HttpParams().set('userId', userId);
+    return this.http.get<Board[]>(this.apiUrl, { params });
   }
 }

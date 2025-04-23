@@ -1,3 +1,5 @@
+import logging
+from venv import logger
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status, generics, permissions
@@ -6,16 +8,22 @@ from django.contrib.auth import authenticate
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
+from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 
 from django.contrib.auth import authenticate
 
 
-from .models import Task, User
+from .models import Task, User,Board
 from .serializers import UserSerializer  # нужно создать
 
-from .serializers import TaskSerializer, TaskTitleSerializer, UserLoginSerializer,UserRegisterSerializer
+from .serializers import BoardSerializer, TaskSerializer, TaskTitleSerializer, UserLoginSerializer,UserRegisterSerializer
 from django.http import JsonResponse
+
+logger = logging.getLogger(__name__)    
+
+
+
 
 def task_list(request):
     tasks = Task.objects.all() 
@@ -97,6 +105,25 @@ class TaskCreateView(generics.CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+class BoardViewSet(viewsets.ModelViewSet):
+    serializer_class = BoardSerializer
+    permission_classes = [IsAuthenticated]  # Только для авторизованных
+
+    def get_queryset(self):
+        # Возвращаем только доски текущего пользователя
+        return Board.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        # Автоматически привязываем текущего пользователя
+        serializer.save(user=self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        logger.info(f"Auth header: {request.headers.get('Authorization')}")
+        logger.info(f"User: {request.user}")
+        return super().create(request, *args, **kwargs)
+    
+
+    
 #JWT
 # @api_view(['POST', 'GET'])
 # def login_view(request):

@@ -11,7 +11,7 @@
   
       
   
-      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+      <button (click)="onLogin($event)" type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
         Login
       </button>
       <button (click)="goBack($event)" class="btn btn-secondary">
