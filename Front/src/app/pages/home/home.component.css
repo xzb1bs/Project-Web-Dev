@@ -1,0 +1,165 @@
+* {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.top-bar form button {
+  background-color: rgb(44, 155, 241);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.2s ease; /* Плавный переход */
+}
+
+/* При наведении (необязательно) */
+.top-bar form button:hover {
+  background-color: rgb(27, 120, 200); /* чуть темнее */
+}
+
+/* При нажатии */
+.top-bar form button:active {
+  background-color: rgb(20, 100, 180); /* ещё темнее — эффект нажатия */
+}
+
+.top-bar {
+  width: 100%;
+  height: 100px; /* Высота черной линии */
+  background-color: black;
+  position: fixed; /* Фиксируем элемент сверху */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Убедитесь, что она выше других элементов */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px; /* Добавляем отступы */
+  box-sizing: border-box;
+}
+  
+  .left-column {
+    flex: 1; /* Takes up space on the left */
+    display: flex;
+    align-items: center;
+  }
+  
+  .left-column span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .center-column {
+    flex: 1; /* Centers the content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .center-column h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .right-column {
+    flex: 1; /* Aligns content to the right */
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Space between buttons */
+  }
+  
+  .nav-buttons button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .nav-buttons button:hover {
+    background-color: gray;
+    color: white;
+  }
+  .background-section {
+    width: 100%;
+    height: 900px; /* Высота секции */
+    background-image: url('images/v2_361.png'); /* Укажите путь к изображению */
+    background-size: cover; /* Масштабирование изображения */
+    background-position: center; /* Центрирование изображения */
+    background-repeat: no-repeat; /* Избегаем повторения */
+    margin-top: 0px; /* Отступ после черной полосы */
+    position: relative; /* Для позиционирования текста внутри */
+    overflow: hidden; /* Убедитесь, что псевдоэлемент не выходит за пределы */
+}
+
+.background-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный слой */
+    z-index: 1; /* Помещаем затемнение ниже текста */
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%; /* Центрирование по вертикали */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translate(-80%, -60%); /* Смещение для точного центрирования */
+    text-align: left;
+    color: white; /* Белый текст для контраста */
+    z-index: 2; /* Помещаем текст поверх затемнения */
+    padding: 20px;
+    border-radius: 10px; /* Скругленные углы */
+}
+
+.overlay-text h1 {
+    font-size: 65px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.overlay-text p {
+    font-size: 32px;
+    margin-top: 50px;
+    line-height: 1.5;
+}
+.features-section {
+  text-align: center;
+  margin: 50px 20px; /* Отступы сверху и по бокам */
+}
+
+.features-section h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px; /* Отступ под заголовком */
+  color: #333; /* Цвет текста */
+}
+
+.features-columns {
+  display: flex;
+  justify-content: space-between; /* Равномерное распределение колонок */
+  gap: 10px; /* Расстояние между колонками */
+  flex-wrap: wrap; /* Перенос колонок на новую строку при малой ширине */
+}
+
+.feature-column {
+  flex: 1; /* Равномерное распределение ширины */
+  min-width: 200px; /* Минимальная ширина колонки */
+  max-width: 250px; /* Максимальная ширина колонки */
+  background-color: #f4f4f4; /* Светлый фон для колонок */
+  padding: 20px;
+  border-radius: 10px; /* Скругленные углы */
+  text-align: center;
+}
+
+.feature-column p {
+  font-size: 16px;
+  color: #11adf5; /* Цвет текста */
+  line-height: 1.5;
+}

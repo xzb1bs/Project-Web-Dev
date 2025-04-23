@@ -1,13 +1,70 @@
-<h1>Добро пожаловать</h1>
-<button (click)="onLogin()">Войти</button>
+<div class="top-bar">
+  <div class="left-column">
+    <span>NoteCore</span>
+  </div>
+  <div class="center-column">
+    <h1>Добро пожаловать</h1>
+  </div>
+  <div class="right-column nav-buttons">
+    <button>О нас</button>
+    <button>Контакты</button>
+    <button>Посмотреть альбомы</button>
+    <button (click)="onLogin()">Войти</button>
+    <form [formGroup]="loginForm" (ngSubmit)="onReg()">
+      <button>Зарегистрироваться</button>
+    </form>
+  </div>
+</div>
 
-<form [formGroup]="loginForm" (ngSubmit)="onReg()">
-  <input formControlName="email" type="email" placeholder="Введите email" />
-  <button type="submit" [disabled]="loginForm.invalid">Зарегестрироваться</button>
-</form>
-
-<div class="buttons">
-  <button>О наc</button>
-  <button>Контакты</button>
-  <button>Посмотреть альбомы</button>
+<div class="background-section">
+  <div class="overlay-text">
+    <h1>Организуй. Делай. Достигай.</h1>
+    <p>
+      NoteCore — это удобное веб-приложение для<br>
+      создания, назначения и отслеживания задач.<br>
+      Грамотное распределение рабочей нагрузки.<br>
+      Экономия времени и денег.
+    </p>
+  </div>
+</div>
+<div class="features-section">
+  <h2>Возможности NoteCore</h2>
+  <div class="features-columns">
+    <div class="feature-column">
+      <p>Распределяй работу</p>
+      <ul>
+        <li>Отслеживание выполнения задач</li>
+        <li>Обмен сменами между сотрудниками</li>
+        <li>Просмотр прогресса</li>
+        <li>Синхронизация с календарем</li>
+      </ul>
+    </div>
+    <div class="feature-column">
+      <p>Управление задачами</p>
+      <ul>
+        <li>Создание контрольных списков</li>
+        <li>Назначение задач</li>
+        <li>Создание новых задач с указанием названия, описания</li>
+        <li>Изменение статуса задач</li>
+      </ul>
+    </div>
+    <div class="feature-column">
+      <p>Поиск и фильтрация</p>
+      <ul>
+        <li>Быстрый поиск задач
+          по ключевым словам</li>
+        <li>Фильтрация по статусу, срокам и другим параметрам</li>
+        <li>Сортировка задач для 
+          удобного отображения</li>
+      </ul>
+    </div>
+    <div class="feature-column">
+      <p>Планируй и составляй прогнозы</p>
+      <ul>
+        <li>Возможность комментировать задачи</li>
+        <li>Обсуждение деталей</li>
+        <li>Безопасное хранение документов</li>
+      </ul>
+    </div>
+  </div>
 </div>

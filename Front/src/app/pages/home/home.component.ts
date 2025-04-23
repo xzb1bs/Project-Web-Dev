@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'] 
 })
 export class HomeComponent {
   loginForm: FormGroup;
