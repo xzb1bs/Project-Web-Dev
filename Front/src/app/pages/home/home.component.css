@@ -237,6 +237,19 @@
   background-color: #0056b3;
 }
 
+.footer .contact h4{
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #343a40;
+}
+
+.footer .contacts h4{
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #343a40;
+}
+
+
 
 .signup-button {
   background-color: rgb(44, 155, 241);

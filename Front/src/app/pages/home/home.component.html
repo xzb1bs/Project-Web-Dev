@@ -7,7 +7,7 @@
   </div>
   <div class="right-column nav-buttons">
     <button (click)="scrollToFooter()">About us</button>
-    <button>Contacts</button>
+    <button (click)="scrollToFooter()">Contacts</button>
     <button>View albums</button>
     <button (click)="onLogin()">Sign in</button>
     <button class="signup-button" (click)="goToRegister()">Sign up</button>
@@ -85,6 +85,12 @@
         <textarea [(ngModel)]="message" name="message" required placeholder="Type your question here..."></textarea>
         <button type="submit" [disabled]="!message">Send</button>
       </form>
+    </div>
+    <div class = "contacts">
+      <h4>Contact us</h4>
+      <p>Phone: +7(777)777-77-77</p>
+      <p>Email: <a href="mailto:info&#64;notecore.com">info&#64;notecore.com</a></p>
+      <p>Address: 59 Tole Bi St, Almaty, Kazakhstan</p>
     </div>
   </div>
 </footer>

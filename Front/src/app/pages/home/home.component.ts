@@ -19,7 +19,7 @@ export class HomeComponent {
 
   sendMessage(): void {
     console.log('Message sent:', this.message);
-    this.message = ''; // Clear the message after sending
+    this.message = ''; 
   }
   scrollToFooter(): void {
     const footerElement = document.getElementById('footer');
