@@ -1,70 +1,100 @@
 <div class="top-bar">
   <div class="left-column">
-    <span>NoteCore</span>
+    <img src="assets/images/note-icon.png" alt="NoteCore Logo" class="logo">
   </div>
   <div class="center-column">
-    <h1>Добро пожаловать</h1>
+    <h1>Welcome!</h1>
   </div>
   <div class="right-column nav-buttons">
-    <button>О нас</button>
-    <button>Контакты</button>
-    <button>Посмотреть альбомы</button>
-    <button (click)="onLogin()">Войти</button>
-    <form [formGroup]="loginForm" (ngSubmit)="onReg()">
-      <button>Зарегистрироваться</button>
-    </form>
+    <button (click)="scrollToFooter()">About us</button>
+    <button>Contacts</button>
+    <button>View albums</button>
+    <button (click)="onLogin()">Sign in</button>
+    <button class="signup-button" (click)="goToRegister()">Sign up</button>
+
   </div>
 </div>
 
 <div class="background-section">
   <div class="overlay-text">
-    <h1>Организуй. Делай. Достигай.</h1>
+    <h1>Organize. Do it. Achieve.</h1>
     <p>
-      NoteCore — это удобное веб-приложение для<br>
-      создания, назначения и отслеживания задач.<br>
-      Грамотное распределение рабочей нагрузки.<br>
-      Экономия времени и денег.
+      NoteCore — is an easy-to-use web application for<br>
+      creating, assigning and tracking tasks<br>
+      Properly distribute your workload.<br>
+      Save time and money.
     </p>
   </div>
 </div>
 <div class="features-section">
-  <h2>Возможности NoteCore</h2>
+  <h2>Opportunities of NoteCore</h2>
   <div class="features-columns">
     <div class="feature-column">
-      <p>Распределяй работу</p>
+      <img src="assets/images/time-management_4.png" alt="Иконка 1" class="feature-icon">
+      <p>Distribute the work</p>
       <ul>
-        <li>Отслеживание выполнения задач</li>
-        <li>Обмен сменами между сотрудниками</li>
-        <li>Просмотр прогресса</li>
-        <li>Синхронизация с календарем</li>
+        <li>Task tracking</li>
+        <li>Shift exchange between employees</li>
+        <li>View progress</li>
+        <li>Synchronization with calenda</li>
       </ul>
     </div>
     <div class="feature-column">
-      <p>Управление задачами</p>
+      <img src="assets/images/time-management_3.png" alt="Иконка 2" class="feature-icon">
+      <p>Task management</p>
       <ul>
-        <li>Создание контрольных списков</li>
-        <li>Назначение задач</li>
-        <li>Создание новых задач с указанием названия, описания</li>
-        <li>Изменение статуса задач</li>
+        <li>Creating checklists</li>
+        <li>Task assignment</li>
+        <li>Creating new tasks with a title, description</li>
+        <li>Change task status</li>
       </ul>
     </div>
     <div class="feature-column">
-      <p>Поиск и фильтрация</p>
+      <img src="assets/images/time-management_2.png" alt="Иконка 3" class="feature-icon">
+      <p>Searching and filtering  </p>
       <ul>
-        <li>Быстрый поиск задач
-          по ключевым словам</li>
-        <li>Фильтрация по статусу, срокам и другим параметрам</li>
-        <li>Сортировка задач для 
-          удобного отображения</li>
+        <li>Quick task search
+          by keyword</li>
+        <li>Filtering by status, deadlines and other parameters</li>
+        <li>Sorting tasks for
+          easy display</li>
       </ul>
     </div>
     <div class="feature-column">
-      <p>Планируй и составляй прогнозы</p>
+      <img src="assets/images/time-management_1.png" alt="Иконка 4" class="feature-icon">
+      <p>Plan and make predictions</p>
       <ul>
-        <li>Возможность комментировать задачи</li>
-        <li>Обсуждение деталей</li>
-        <li>Безопасное хранение документов</li>
+        <li>Ability to comment on tasks</li>
+        <li>Discussion of details</li>
+        <li>Safe storage of documents</li>
       </ul>
     </div>
   </div>
-</div>
+</div> 
+
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <div class="about">
+      <h3>About us</h3>
+      <p>
+        We are a team of three. We are students of the university. We are developing a web application for task management.
+        Our goal is to help you organize your work and achieve your goals.
+        We are constantly improving our application and adding new features. We are open to your suggestions and feedback.
+      </p>
+    </div>
+    <div class="contact">
+      <h4>Any questions?</h4>
+      <p>Write to us directly here or at <a href="mailto:corenote&#64;note.com">corenote&#64;note.com</a></p>
+      <form (ngSubmit)="sendMessage()" #contactForm="ngForm" class="contact-form">
+        <textarea [(ngModel)]="message" name="message" required placeholder="Type your question here..."></textarea>
+        <button type="submit" [disabled]="!message">Send</button>
+      </form>
+    </div>
+  </div>
+  <div class = "contacts">
+    <h4>Contact us</h4>
+    <p>Phone: +7(777)777-77-77</p>
+    <p>Email: <a href="mailto:info&#64;notecore.com">info&#64;notecore.com</a></p>
+    <p>Address: 59 Tole Bi St, Almaty, Kazakhstan</p>
+  </div>
+</footer>
