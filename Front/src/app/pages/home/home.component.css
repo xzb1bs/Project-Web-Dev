@@ -1,7 +1,12 @@
 * {
   font-family: 'Roboto', sans-serif !important;
 }
-
+.logo {
+  height: 150px; /* Высота логотипа */
+  width: auto; /* Автоматическая ширина для сохранения пропорций */
+  display: block; /* Убираем лишние отступы */
+  margin-left: 20px; /* Отступ слева */
+}
 .top-bar form button {
   background-color: rgb(44, 155, 241);
   color: white;
@@ -25,8 +30,8 @@
 
 .top-bar {
   width: 100%;
-  height: 100px; /* Высота черной линии */
-  background-color: black;
+  height: 50px; /* Высота черной линии */
+  background-color: rgb(22, 21, 21);
   position: fixed; /* Фиксируем элемент сверху */
   top: 0;
   left: 0;
@@ -80,7 +85,7 @@
   }
   
   .nav-buttons button:hover {
-    background-color: rgb(89, 0, 255);
+    background-color: gray;
     color: white;
   }
   .background-section {
@@ -110,7 +115,7 @@
     position: absolute;
     top: 50%; /* Центрирование по вертикали */
     left: 50%; /* Центрирование по горизонтали */
-    transform: translate(-80%, -60%); /* Смещение для точного центрирования */
+    transform: translate(-95%, -60%)!important; /* Смещение для точного центрирования */
     text-align: left;
     color: white; /* Белый текст для контраста */
     z-index: 2; /* Помещаем текст поверх затемнения */
@@ -131,40 +136,68 @@
 }
 .features-section {
   text-align: center;
-  margin: 50px 20px; /* Отступы сверху и по бокам */
+  margin: 70px 0px; /* Отступы сверху и по бокам */
 }
 
 .features-section h2 {
   font-size: 36px;
   font-weight: bold;
-  margin-bottom: 30px; /* Отступ под заголовком */
+  margin-bottom: 40px; /* Отступ под заголовком */
   color: #333; /* Цвет текста */
 }
 
 .features-columns {
   display: flex;
-  justify-content: space-between; /* Равномерное распределение колонок */
-  gap: 10px; /* Расстояние между колонками */
+  justify-content: center; /* Равномерное распределение колонок */
+  gap: 40px; /* Расстояние между колонками */
   flex-wrap: wrap; /* Перенос колонок на новую строку при малой ширине */
 }
 
 .feature-column {
   flex: 1; /* Равномерное распределение ширины */
   min-width: 200px; /* Минимальная ширина колонки */
-  max-width: 250px; /* Максимальная ширина колонки */
+  max-width: 310px; /* Максимальная ширина колонки */
   background-color: #f4f4f4; /* Светлый фон для колонок */
   padding: 20px;
   border-radius: 10px; /* Скругленные углы */
   text-align: center;
+  margin-bottom: 100px;
+  min-height: 500px; /* Минимальная высота колонки */
 }
-
 .feature-column p {
-  font-size: 16px;
-  color: #11adf5; /* Цвет текста */
+  font-size: 20px;
+  color: #07afed; /* Синий цвет */
+  font-weight: 1000; /* Жирный шрифт */
   line-height: 1.5;
+  text-align: left; /* Выровнять текст по левому краю */
+  margin-left: 5px; /* Отступ слева, чтобы текст был ближе к точкам */
+  margin-bottom: 35px;
 }
 
+.feature-column ul {
+  list-style: disc; /* Устанавливаем стандартные точки */
+  padding-left: 20px; /* Отступ для списка */
+  margin: 30px 0; /* Отступы сверху и снизу для каждого списка */
+}
 
+.feature-column ul li {
+  margin: 20px 0; /* Отступы между элементами списка */
+  font-size: 20px; /* Размер шрифта для элементов списка */
+  color: rgb(67, 68, 73); /* Цвет текста */
+  text-align: left; /* Выровнять текст по левому краю */
+}
+
+.feature-column ul li::marker {
+  color: #1cb6ef; /* Голубой цвет для точек */
+  font-size: 18px; /* Размер точек */
+}
+.feature-icon {
+  width: 120px; /* Ширина изображения */
+  height: 120px; /* Высота изображения */
+  margin-bottom: 10px; /* Отступ под изображением */
+  margin-left: auto;
+  margin-right: 200px; /* Центрируем изображение */
+}
 .footer {
   background-color: #f9f9f9;
   padding: 60px 20px;
@@ -237,23 +270,10 @@
   background-color: #0056b3;
 }
 
-.footer .contact h4{
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #343a40;
-}
-
-.footer .contacts h4{
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #343a40;
-}
-
-
 
 .signup-button {
-  background-color: rgb(44, 155, 241);
-  color: white;
+  background-color: rgb(44, 155, 241)!important;
+  color: white !important;
   border: none;
   padding: 10px 15px;
   cursor: pointer;
@@ -263,9 +283,9 @@
 }
 
 .signup-button:hover {
-  background-color: rgb(27, 120, 200);
+  background-color: rgb(27, 120, 200)!important; /* чуть темнее */
 }
 
 .signup-button:active {
-  background-color: rgb(20, 100, 180);
+  background-color: rgb(20, 100, 180)!important; /* ещё темнее — эффект нажатия */
 }

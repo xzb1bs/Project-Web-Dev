@@ -1,13 +1,13 @@
 <div class="top-bar">
   <div class="left-column">
-    <span>NoteCore</span>
+    <img src="assets/images/note-icon.png" alt="NoteCore Logo" class="logo">
   </div>
   <div class="center-column">
     <h1>Welcome!</h1>
   </div>
   <div class="right-column nav-buttons">
     <button (click)="scrollToFooter()">About us</button>
-    <button (click)="scrollToFooter()">Contacts</button>
+    <button>Contacts</button>
     <button>View albums</button>
     <button (click)="onLogin()">Sign in</button>
     <button class="signup-button" (click)="goToRegister()">Sign up</button>
@@ -30,15 +30,17 @@
   <h2>Opportunities of NoteCore</h2>
   <div class="features-columns">
     <div class="feature-column">
+      <img src="assets/images/time-management_4.png" alt="Иконка 1" class="feature-icon">
       <p>Distribute the work</p>
       <ul>
         <li>Task tracking</li>
         <li>Shift exchange between employees</li>
         <li>View progress</li>
-        <li>Synchronization with calendar</li>
+        <li>Synchronization with calenda</li>
       </ul>
     </div>
     <div class="feature-column">
+      <img src="assets/images/time-management_3.png" alt="Иконка 2" class="feature-icon">
       <p>Task management</p>
       <ul>
         <li>Creating checklists</li>
@@ -48,7 +50,8 @@
       </ul>
     </div>
     <div class="feature-column">
-      <p>Searching and filtering</p>
+      <img src="assets/images/time-management_2.png" alt="Иконка 3" class="feature-icon">
+      <p>Searching and filtering  </p>
       <ul>
         <li>Quick task search
           by keyword</li>
@@ -58,6 +61,7 @@
       </ul>
     </div>
     <div class="feature-column">
+      <img src="assets/images/time-management_1.png" alt="Иконка 4" class="feature-icon">
       <p>Plan and make predictions</p>
       <ul>
         <li>Ability to comment on tasks</li>
@@ -66,7 +70,7 @@
       </ul>
     </div>
   </div>
-</div>
+</div> 
 
 <footer id="footer" class="footer">
   <div class="footer-container">
@@ -86,12 +90,11 @@
         <button type="submit" [disabled]="!message">Send</button>
       </form>
     </div>
-    <div class = "contacts">
-      <h4>Contact us</h4>
-      <p>Phone: +7(777)777-77-77</p>
-      <p>Email: <a href="mailto:info&#64;notecore.com">info&#64;notecore.com</a></p>
-      <p>Address: 59 Tole Bi St, Almaty, Kazakhstan</p>
-    </div>
+  </div>
+  <div class = "contacts">
+    <h4>Contact us</h4>
+    <p>Phone: +7(777)777-77-77</p>
+    <p>Email: <a href="mailto:info&#64;notecore.com">info&#64;notecore.com</a></p>
+    <p>Address: 59 Tole Bi St, Almaty, Kazakhstan</p>
   </div>
 </footer>
-
