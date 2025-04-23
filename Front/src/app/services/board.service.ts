@@ -24,6 +24,11 @@ export class BoardService {
     });
   }
 
+  deleteBoard(title: string): Observable<any> {
+
+    return this.http.delete(`${this.apiUrl}${title}/`);
+  }
+
   // Получение досок пользователя
   getBoardsByUser(userId: string): Observable<Board[]> {
     const params = new HttpParams().set('userId', userId);

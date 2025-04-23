@@ -24,5 +24,7 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/boards/boards.component').then(m => m.BoardsComponent),
   
   },
-  { path: 'boards/:userId/:id', component: BoardComponent } 
+  { path: 'boards/:userId/:title', 
+    loadComponent: () => import('./pages/board/board.component').then(m => m.BoardComponent),
+   } 
 ];

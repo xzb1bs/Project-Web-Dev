@@ -17,7 +17,7 @@ urlpatterns = [
     path('create/', views.create_task, name='create-task'),
     path('detail/<int:pk>/', views.TaskDetailView.as_view(), name='task-detail'),
     path('create-cbv/', views.TaskCreateView.as_view(), name='task-create-cbv'),
-
+    path('boards/<str:title>/', views.delete_board, name='delete-board'),
     # 💥 Важная строка
     path('', include(router.urls)),
 ]

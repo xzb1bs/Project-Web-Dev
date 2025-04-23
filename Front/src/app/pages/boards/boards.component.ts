@@ -42,8 +42,8 @@ export class BoardsComponent implements OnInit {
     });
   }
 
-  openBoard(boardId: string): void {
-    this.router.navigate(['/boards', boardId]); // Пример: /boards/123
+  openBoard(boardTitle: string): void {
+    this.router.navigate(['/boards',this.userId,boardTitle]); // Пример: /boards/123
   }
   
 

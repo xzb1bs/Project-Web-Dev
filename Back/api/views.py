@@ -107,7 +107,7 @@ class TaskCreateView(generics.CreateAPIView):
 
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
-    permission_classes = [IsAuthenticated]  # Только для авторизованных
+    permission_classes = [IsAuthenticated] 
 
     def get_queryset(self):
         # Возвращаем только доски текущего пользователя
@@ -122,24 +122,17 @@ class BoardViewSet(viewsets.ModelViewSet):
         logger.info(f"User: {request.user}")
         return super().create(request, *args, **kwargs)
     
-
-    
-#JWT
-# @api_view(['POST', 'GET'])
-# def login_view(request):
-#     serializer = UserLoginSerializer(data=request.data)
-#     serializer.is_valid(raise_exception=True)
-#     user = authenticate(
-#         username=serializer.validated_data['username'],
-#         password=serializer.validated_data['password']
-#     )
-#     if user:
-#         refresh = RefreshToken.for_user(user)
-#         return Response({
-#             'refresh': str(refresh),
-#             'access': str(refresh.access_token),
-#         })
-#     return Response({'error': 'Invalid credentials'}, status=400)
+@api_view(['DELETE'])
+def delete_board(request,title):
+    try:
+        board = Board.objects.get(title=title, user=request.user)  # Проверяем владельца
+        board.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    except Board.DoesNotExist:
+        return Response(
+            {"error": "Доска не найдена или у вас нет прав на её удаление"},
+            status=status.HTTP_404_NOT_FOUND
+        )
 
 @api_view(['POST'])
 def logout_view(request):
