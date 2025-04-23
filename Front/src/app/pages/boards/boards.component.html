@@ -1,23 +1,34 @@
-
 <header>
-    <button *ngIf="isUserLoggedIn$ | async" (click)="logout()">Выйти</button>
-</header>
-<div class="main">
-    <div class="menu"></div>
-    <div class="vb">
-        <p>Доски</p>
-        <div class="boards">
-            <button (click)="showModal = true">Создать доску</button>
-            <app-create-board
-            *ngIf="showModal"
-            (create)="handleCreateBoard($event)"
-            (close)="showModal = false">
-            </app-create-board>
-            <div *ngFor="let board of boards" class="board-card" (click)="openBoard(board.title)">
-                <h3>{{ board.title }}</h3>
-            </div>
-        </div>
-        
+    <div class="header-container">
+      <h1>Мои доски</h1>
+      <button *ngIf="isUserLoggedIn$ | async" (click)="logout()" class="create-button">Выйти</button>
     </div>
-</div>
-
+  </header>
+  <div class="main">
+    <aside class="menu">
+      <!-- Здесь можешь добавить пункты меню -->
+    </aside>
+  
+    <section class="vb">
+      <div class="boards-header">
+        <h2>Доски</h2>
+        <button class="create-button" (click)="showModal = true">+ Создать доску</button>
+      </div>
+  
+      <app-create-board
+        *ngIf="showModal"
+        (create)="handleCreateBoard($event)"
+        (close)="showModal = false">
+      </app-create-board>
+  
+      <div class="boards">
+        <div
+          *ngFor="let board of boards"
+          class="board-card"
+          (click)="openBoard(board.title)">
+          <h3>{{ board.title }}</h3>
+        </div>
+      </div>
+    </section>
+  </div>
+  
