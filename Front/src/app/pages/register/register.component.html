@@ -6,12 +6,13 @@
           <input type="email" placeholder="Email" [(ngModel)]="form.email" name="email" required>
           <input type="password" placeholder="Password" [(ngModel)]="form.password" name="password" required>
           <button type="submit">Зарегистрироваться</button>
+          <button (click)="goBack($event)" class="btn btn-secondary">Back</button>
         </form>
       </div>
   
       
   
-      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+      <!-- <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
         Login
       </button>
       <button (click)="goBack($event)" class="btn btn-secondary">
@@ -19,5 +20,5 @@
       </button>
     </form>
 
-  </div>
+  </div> -->
   
