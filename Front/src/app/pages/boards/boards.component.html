@@ -13,7 +13,7 @@
             (create)="handleCreateBoard($event)"
             (close)="showModal = false">
             </app-create-board>
-            <div *ngFor="let board of boards" class="board-card" (click)="openBoard(board.title)">
+            <div *ngFor="let board of boards" class="board-card" (click)="openBoard(board)">
                 <h3>{{ board.title }}</h3>
             </div>
         </div>

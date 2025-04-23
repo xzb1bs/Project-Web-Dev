@@ -1,2 +1,46 @@
-<p>board works!</p>
-<button (click)="deleteBoard(boardTitle)"> Delete</button>
+
+<div class="bady">
+    <div class="header">
+        <div class="left">
+            <button>Title</button>
+            <button>👥 По доске</button>
+        </div>
+        <div class="right" *ngIf="currentBoard; else loading">
+          <h1>{{ boardTitle }}</h1>
+            <span>⚡ Фильтры</span>
+            <span>KT</span>
+            <button>Поделиться</button>
+            <button (click)="deleteBoard()"> Delete</button>
+            <h3>{{currentBoard.title}}</h3>
+          </div>
+          <button (click)="back()"> Back</button>
+    </div>
+
+    <div class="board-container">
+  
+  <div class="columns-container">
+    <div *ngFor="let column of columns" class="column">
+      <h3>{{ column.title }}</h3>
+      
+      <div class="tasks-list">
+        <div *ngFor="let task of column.tasks" class="task">
+          <h3>{{ task.title }}</h3> 
+          <div> 
+            <button (click)="deleteTask(task.id!)">Удалить</button>   
+          </div>    
+        </div>
+      </div>
+      
+      <button (click)="addTask(column)"> Добавить карточку</button>
+    </div>
+    
+    <button (click)="addColumn()">Добавить колонку</button>
+  </div>
+  
+</div>
+      
+</div>
+
+<ng-template #loading>
+  <p>Загрузка доски...</p>
+</ng-template>

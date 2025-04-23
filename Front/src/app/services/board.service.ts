@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
+
 export interface Board {
   id: number;
   title: string;
@@ -15,19 +16,23 @@ export class BoardService {
 
   constructor(private http: HttpClient) {}
 
+  getBoardById(id: number): Observable<Board> {
+    return this.http.get<Board>(`${this.apiUrl}${id}/`);
+  }
+
   // Создание доски
   createBoard(boardData: { title: string; color: string }): Observable<any> {
     return this.http.post(this.apiUrl, {
       title: boardData.title,
       color: boardData.color
-      // userId НЕ передаём - бэкенд возьмёт его из токена
+      
     });
   }
 
-  deleteBoard(title: string): Observable<any> {
+  deleteBoard(id: number): Observable<any> {
 
-    return this.http.delete(`${this.apiUrl}${title}/`);
-  }
+    return this.http.delete(`${this.apiUrl}${id}/`);
+    }
 
   // Получение досок пользователя
   getBoardsByUser(userId: string): Observable<Board[]> {

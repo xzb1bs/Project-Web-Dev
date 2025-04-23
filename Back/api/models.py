@@ -46,15 +46,12 @@ class Board(models.Model):
         return self.title
 
 
+class Column(models.Model):
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='columns')
+    title = models.CharField(max_length=255)
+
 class Task(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
-    due_date = models.DateField()
-    priority = models.IntegerField(default=1)
-    status = models.ForeignKey(TaskStatus, on_delete=models.CASCADE)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
-    
-    objects = TaskManager() 
-    def __str__(self):
-        return self.title
+    column = models.ForeignKey(Column, on_delete=models.CASCADE, related_name='tasks')
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='tasks', default=1)  # Assuming board with ID 1 exists
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks', default=1)

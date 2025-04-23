@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Task, Project, TaskStatus, User
+from .models import Task, Project, User,Column
 from .models import Board
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,9 +12,6 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = '__all__'
 
-class TaskTitleSerializer(serializers.Serializer):
-    title = serializers.CharField(max_length=255)
-    due_date = serializers.DateField()
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,7 +21,16 @@ class ProjectSerializer(serializers.ModelSerializer):
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
-        fields = ['title', 'color']
+        fields = ['id','title', 'color']
+
+class TaskTitleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = ['id', 'title', 'column', 'board', 'user']
+    def create(self, validated_data):
+        user = self.context['request'].user
+        board = self.context['board']
+        return Task.objects.create(user=user, board=board, **validated_data)
 
 
 class UserLoginSerializer(serializers.Serializer):
@@ -36,3 +42,12 @@ class UserRegisterSerializer(serializers.Serializer):
     email =serializers.CharField()
     password = serializers.CharField()
 
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = ['id', 'title']
+
+class ColumnSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Column
+        fields = '__all__'
